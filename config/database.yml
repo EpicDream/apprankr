@@ -1,0 +1,23 @@
+development:
+  database: apprankr-dev
+  adapter: postgresql
+  host: moliere.epicdream.fr
+  port: 5432
+  pool: 5
+  timeout: 5000
+  username: prixing
+  password: ja_kn_81P
+
+test:
+  database: apprankr-test
+  adapter: sqlite3 
+
+production:
+  database: apprankr
+  adapter: postgresql
+  host: moliere.epicdream.fr
+  port: 5432
+  pool: 5
+  timeout: 5000
+  username: prixing
+  password: ja_kn_81P

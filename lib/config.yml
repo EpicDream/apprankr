@@ -1,0 +1,118 @@
+categories:
+  - APPLICATION
+  - GAME
+  - GAME_WALLPAPER
+  - ARCADE
+  - CARDS
+  - RACING
+  - BRAIN
+  - SPORTS_GAMES
+  - CASUAL
+  - GAME_WIDGETS
+  - NEWS_AND_MAGAZINES
+  - COMICS
+  - LIBRARIES_AND_DEMO
+  - COMMUNICATION
+  - ENTERTAINMENT
+  - EDUCATION
+  - FINANCE
+  - APP_WALLPAPER
+  - TRAVEL_AND_LOCAL
+  - BOOKS_AND_REFERENCE
+  - MEDIA_AND_VIDEO
+  - MUSIC_AND_AUDIO
+  - MEDICAL
+  - WEATHER
+  - TOOLS
+  - PERSONALIZATION
+  - PHOTOGRAPHY
+  - PRODUCTIVITY
+  - BUSINESS
+  - HEALTH_AND_FITNESS
+  - SHOPPING
+  - SOCIAL
+  - SPORTS
+  - LIFESTYLE
+  - TRANSPORTATION
+  - APP_WIDGETS
+
+ranking_types:
+  - apps_featured
+  - apps_movers_shakers
+  - apps_topselling_paid
+  - apps_topselling_free
+  - apps_topgrossing
+  - apps_topselling_new_paid
+  - apps_topselling_new_free
+
+languages:
+  - cs:Čeština
+  - da:Dansk
+  - de:Deutsch
+  - en:English
+  - es:Español (España)
+  - es_419:Español (Latinoamérica)
+  - fr:Français
+  - it:Italiano
+  - nl:Nederlands
+  - no:Norsk
+  - pl:Polski
+  - pt_BR:Português (Brasil)
+  - pt_PT:Português (Portugal)
+  - fi:Suomi
+  - sv:Svenska
+  - tr:Türkçe
+  - el:Ελληνικά
+  - ru:Русский
+  - ko:한국어
+  - zh_CN:中文（简体中文）
+  - zh_TW:中文（繁體中文）
+  - ja:日本語
+
+countries:
+  - France:fr
+  - USA:en
+  - Brazil:pt_BR
+  - United Kingdom:en
+  - Sweden:sv
+  - Denmark:da
+  - Austria:de
+  - Netherlands:nl
+  - Germany:de
+
+c2:
+  - Canada
+  - Spain
+  - Ireland
+  - Belgium
+  - Russia
+  - Finland
+  - Norway
+  - China
+  - Italia
+
+proxy:
+  USA: 96.9.148.213:60099:EricLarch:pichon69
+  Netherlands: 85.17.151.132:60099:EricLarchIntl:pichon69
+  Denmark: 80.70.0.57:60099:EricLarchIntl:pichon69
+  Sweden: 95.143.194.36:60099:EricLarchIntl:pichon69
+  Austria: 212.69.189.133:60099:EricLarchIntl:pichon69
+  Brazil: 187.45.228.130:60099:EricLarchIntl:pichon69
+  United Kingdom: 109.234.194.121:60099:EricLarchIntl:pichon69
+  Germany: 212.48.121.152:27501:pp-albvague:card3fault
+    
+proxy-nomarket:
+  Spain: 93.189.89.119:60099:EricLarchIntl:pichon69
+  Russia: 109.68.191.73:60099:EricLarchIntl:pichon69
+  Belgium: 94.198.160.165:60099:EricLarchIntl:pichon69
+  Finland: 217.64.40.233:60099:EricLarchIntl:pichon69
+  Ireland: 80.93.28.69:60099:EricLarchIntl:pichon69
+  China: 114.80.202.186:60099:EricLarchIntl:pichon69
+  Norway: 178.21.129.238:60099:EricLarchIntl:pichon69
+
+proxy-broken:
+  Germany: 62.75.162.213:60099:EricLarchIntl:pichon69
+  Canada: 66.49.219.85:45623:EricLarchIntl:pichon69
+  Italia: 178.255.155.113:60099:EricLarchIntl:pichon69
+
+
