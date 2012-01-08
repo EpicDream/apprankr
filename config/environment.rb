@@ -8,3 +8,9 @@ end
 
 # Initialize the rails application
 Apprankr::Application.initialize!
+
+ActionMailer::Base.smtp_settings = {
+  :address              => "smtp.epicdream.fr",
+  :port                 => 25,
+  :domain               => "prixing.fr"
+}
