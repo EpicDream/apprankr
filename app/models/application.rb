@@ -13,6 +13,30 @@ class Application < ActiveRecord::Base
 
   validates :package, :presence => true
 
+  def ranking_countries
+    Country.where(:id => self.rankings.uniq.map(&:country_id)).order(:name)
+  end
+
+  def ranking_categories_for_country country
+    Category.where(:id => self.ranks.joins(:ranking).where("rankings.country_id=#{country.id}").select("distinct category_id").map(&:category_id)).order(:id)
+  end
+
+  def ranking_types_for_country_and_category country, category
+    RankingType.where(:id => self.ranks.joins(:ranking).where("rankings.country_id=#{country.id} and rankings.category_id=#{category_id}").select("distinct ranking_type_id").map(&:ranking_type_id)).order(:id)
+  end
+
+  def ranking_types_for_country country
+    RankingType.where(:id => self.ranks.joins(:ranking).where("rankings.country_id=#{country.id}").select("distinct ranking_type_id").map(&:ranking_type_id)).order(:id)
+  end
+  
+  def current_rank ranking
+    self.ranks.where(:ranking_id => ranking).order("created_at desc").first
+  end
+
+  def previous_rank ranking
+    self.ranks.where(:ranking_id => ranking).order("created_at desc").second
+  end
+
   def current association, language
     language ||= Language.find_by_code('fr')
     send(association).where(:language_id => language.id).order("created_at desc").first \
@@ -48,6 +72,14 @@ class Application < ActiveRecord::Base
     self.downloads.order("created_at desc").first
   end
   
+  def review_summary
+    self.review_summaries.order("created_at desc").first
+  end
+  
+  def last_reviews
+    self.reviews.where("created_at::date + 2 >= now()::date").order(:created_at)
+  end
+    
   def add_title content, language
     Title.create(:content => content, :application => self, :language => language)
   end

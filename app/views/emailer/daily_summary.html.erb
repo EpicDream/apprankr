@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head><title></title></head>
+<body style="background-color: #edeeef;" align="center" style="font-family: tahoma, arial, verdana, sans-serif;">
+<div align="center">
+<div align="center" style="padding-bottom: 15px; width: 695px;">
+  <div stlye="height: 10px; width: 665px; line-height: 1px; font-size: 1px;">&nbsp;</div>
+  <img src="http://appannie.com/media/pictures/annie_email/annie_daily_top_corners.png" style="width: 665px; height: 6px; display: block;" />
+  <div align="left" style="width: 665px; background-color: #ffffff;">
+    <div style="padding: 15px; padding-top: 10px; padding-bottom: 0px;">
+      <div style="padding-bottom: 12px;">
+        <table cellspacing="0" cellpadding="0" width="635" height="44">
+           <tr>
+            <td width="344" valign="bottom"><a href="http://www.apprankr.com"><img src="http://appannie.com/media/pictures/annie_email/annie_daily_header.jpg" style="width: 344px; height: 40px;" width="344" height="40" alt="Apprankr's Daily Report" border="0" /></a></td>
+            <td valign="bottom" style="text-align: right; padding-bottom: 7px; -webkit-text-size-adjust: none; font-size: 15px; color: #333; font-weight: normal;"><%= Date.today.to_s(:long) %></td>
+          </tr>
+        </table>
+      </div>
+      
+      <% @applications.each do |application| %>
+        <table cellspacing="0" cellpadding="0" style="width: 635px;">
+          <tr>
+            <th background="http://appannie.com/media/pictures/annie_email/annie_daily_app_table_header_bg.png" style="text-align: left; font-weight: normal; padding-top: 6px; padding-bottom: 6px; border-top: 1px solid #f1f1f1; border-bottom: 1px solid #ececec;" valign="center">
+              <table cellspacing="0" cellpadding="0" style="width: 340px;">
+                <tr>
+                  <td width="33" style="width: 33px; text-align: right;" valign="center">
+                    <img width="24px" height="24px" src="<%= application.icon %>" style="border: 0px;" />
+                  </td>
+                  <td style="font-weight: normal; -webkit-text-size-adjust: none; font-size: 14px; padding-left: 8px; padding-top: 2px;">
+                    <a name="app_1" title="<%= application.title %>" href="#" style="color: #333333; text-decoration: none;"><%= application.title.content %></a>
+                  </td>
+                </tr>
+              </table>
+            </th>
+            <th background="http://appannie.com/media/pictures/annie_email/annie_daily_app_table_header_bg.png" align="right" style="text-align: right; font-weight: normal; padding-top: 6px; padding-bottom: 6px; border-top: 1px solid #f1f1f1; border-bottom: 1px solid #ececec;">
+              <table cellspacing="0" cellpadding="0" width="235" style="width: 235px;" align="right">
+                <tr>
+                  <td width="115" style="-webkit-text-size-adjust: none; font-size: 10px; color: #848383; text-align: right; padding-bottom: 3px; width: 115px; margin-right: 0px;">VERSION</td>
+                  <td width="115" style="-webkit-text-size-adjust: none; font-size: 10px; color: #848383; text-align: right; padding-bottom: 3px; width: 115px; margin-right: 0px;">DOWNLOADS</td>
+                  <td width="120" style="-webkit-text-size-adjust: none; font-size: 10px; color: #848383; text-align: right; padding-bottom: 3px; padding-right: 10px; width: 120px; margin-right: 0px;">REVIEWS</td>
+                </tr>
+                <tr>
+                  <td style="-webkit-text-size-adjust: none; font-size: 12px; text-align: right; font-weight: bold;"><%= application.version.value %></td>
+                  <td style="-webkit-text-size-adjust: none; font-size: 12px; text-align: right; font-weight: bold;"><%= application.download.value %></td>
+                  <td style="-webkit-text-size-adjust: none; font-size: 12px; text-align: right; padding-right: 10px; font-weight: bold;"><%= sprintf("%1.2f",application.review_summary.rating) %> (<%= application.review_summary.count %>)</a></td>
+                </tr>
+              </table>
+            </th>
+          </tr>
+          <tr>
+            <td colspan="2" align="center" style="background-color: #f8f8f8; border-bottom: 1px solid #f1f1f1; padding-bottom: 10px;">
+
+              <% application.ranking_countries.each do |country| %>
+
+                <div style="height: 10px; line-height: 1px; font-size: 1px;">&nbsp;</div>
+                <table cellspacing="0" cellpadding="0" style="width: 615px;" width="615">
+                  <tr>
+                    <th style="padding: 5px; padding-left: 0px; color: #666666; -webkit-text-size-adjust: none; font-size: 10px; text-transform: uppercase; font-weight: normal; text-align: left; border-bottom: 1px solid #eeeeee;">
+                      <a title="<%= country.name %>" style="text-decoration: none;"><img alt="<%= country.name %>" src="http://www.appannie.com/media/pictures/flags/gif/<%= country.language.code %>.gif" style="width: 16px; height: 11px; border: 0px; margin-right: 1px;"></a> 
+                      <a href="#" style="color: #333333; text-decoration: none;">Rankings</a>
+                    </th>
+                    <% application.ranking_categories_for_country(country).each do |category| %>
+                      <th style="text-align: left; padding: 5px; color: #666666; -webkit-text-size-adjust: none; font-size: 10px; text-transform: uppercase; font-weight: normal; text-align: center; border-bottom: 1px solid #eeeeee;" colspan="2">
+                        <%= category.name %>
+                      </th>
+                    <% end %>
+                  </tr>
+                  <% application.ranking_types_for_country(country).each do |ranking_type| %>
+                    <tr>
+                      <td style="-webkit-text-size-adjust: none; font-size: 13px; text-align: left; color: #333333; background-color: #ffffff; border-left: 1px solid #eeeeee; padding: 5px;  border-bottom: 1px solid #eee;">
+                        <%= ranking_type.name %>
+                      </td>
+                      <% application.ranking_categories_for_country(country).each do |category| %>
+                        <% ranking = Ranking.find_by_country_id_and_category_id_and_ranking_type_id(country.id, category.id, ranking_type.id) %>
+                        <% current_rank = application.current_rank(ranking).rank %>
+                        <% previous_rank = application.previous_rank(ranking).try(:rank) %>
+                        <td valign="center" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; background-color: #ffffff; padding: 5px; padding-left: 20px; text-align: right;  border-bottom: 1px solid #eee;">
+                          <%= current_rank %>
+                        </td>
+                        <td valign="bottom" style="-webkit-text-size-adjust: none; font-size: 13px; background-color: #ffffff;  padding: 5px; padding-right: 15px; text-align: left;  border-bottom: 1px solid #eee;">
+                          <% if previous_rank %>
+                            <a title="Compared to yesterday" style="color: <%= current_rank.to_i < previous_rank.to_i ? "#5db446" : "#ff0000" %>; text-decoration: none; -webkit-text-size-adjust: none; font-size: 11px;">
+                              <span style="-webkit-text-size-adjust: none; font-size: 9px; padding-right: 2px;">
+                                <%= current_rank.to_i < previous_rank.to_i ? "&#x25B2;" : "&#x25BC;" %>
+                              </span>
+                              <%= previous_rank %>
+                            </a>
+                          <% end %>
+                        </td>
+                      <% end %>                      
+                    </tr>
+                  <% end %>
+                </table>
+              
+              <% end %>
+              
+              <% reviews = application.last_reviews %>
+              <% rating = reviews.map(&:rating).inject{ |sum, el| sum + el }.to_f / reviews.size %>
+              
+              <div style="height: 10px; line-height: 1px; font-size: 1px;">&nbsp;</div>
+              <table cellspacing="0" cellpadding="0" style="width: 615px;" width="615">
+                <tr>
+                  <th colspan="3" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; padding: 5px; font-size: 10px; text-transform: uppercase; font-weight: normal; text-align: left; border-bottom: 1px solid #eeeeee;">
+                    <a href="#" style="color: #333333; text-decoration: none;"><%= reviews.count %> New Reviews<span style="padding-left: 0px;">, Avg. <%= sprintf("%1.2f", rating) %> Rating</span></a>
+                  </th>
+                </tr>
+                <% reviews.each do |review| %>                    
+                  <tr>    
+                    <td width="23" valign="top" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; border-left: 1px solid #eeeeee; background-color: #ffffff; padding-left: 8px; padding-top: 8px; padding-right: 0px; text-align: left;  border-bottom: 0px;">
+                      <a title="review.language.name" style="text-decoration: none;">
+                        <img src="http://www.appannie.com/media/pictures/flags/gif/<%= review.language.code %>.gif" />
+                      </a>
+                    </td>
+                    <td width="90" valign="top" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; background-color: #ffffff; border-left: 0px; padding: 5px; padding-left: 0px; padding-right: 0px; text-align: left;  border-bottom: 0px;">
+                      <nobr>
+                        <% review.rating.times do %>
+                          <img src="http://static.appannie.com/media/pictures/star-whole.png" alt="*" />
+                        <% end %>
+                        <% (5 - review.rating).times do %>
+                          <img src="http://static.appannie.com/media/pictures/star-blank.png" alt="*" />
+                        <% end %>
+                      </nobr>
+                    </td>
+                    <td width="502" valign="top" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; border-right: 1px solid #eeeeee; background-color: #ffffff; padding: 5px; padding-left: 0px; text-align: left;  border-bottom: 0px;">
+                      <strong><%= review.title %></strong> - <%= review.content %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+                           
+            </td>
+          </tr>
+        </table>
+
+        <% end %>
+
+        <div style="height: 20px; line-height: 1px; font-size: 1px;">&nbsp;</div>
+
+    </div>
+  </div>
+
+  <img src="http://appannie.com/media/pictures/annie_email/annie_daily_bottom_corners.png" style="width: 665px; height: 6px; display: block;" />
+
+</div>
+</div>
+</body>
+</html>
