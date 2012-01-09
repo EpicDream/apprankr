@@ -1,8 +1,3 @@
-=begin
-require 'lib/console'
-Console.user_stats 'elarch@gmail.com','bidibou$$1' 
-=end
-
 module Console
   require 'lib/scraper'
   require 'selenium-webdriver'
@@ -34,11 +29,16 @@ module Console
       application.add_report Report::INSTALLED, install.to_i
       puts "#{package} - Downloaded #{download} / Installed #{install}"
     end
+    quit
   end
 
   def self.init
     @driver.quit if @driver
     @driver = Selenium::WebDriver.for :firefox
+  end
+
+  def self.quit
+    @driver.quit if @driver
   end
   
   def self.login email, password

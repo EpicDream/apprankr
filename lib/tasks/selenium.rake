@@ -5,7 +5,7 @@ namespace :apprankr do
     task :console => :environment do
       require './lib/console'
       `export DISPLAY=:99`
-      Console.user_stats 'elarch@gmail.com','bidibou$$1' 
+      Console.user_stats 'elarch@gmail.com','' 
     end
     
   end
