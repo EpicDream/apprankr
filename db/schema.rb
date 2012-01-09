@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120104013525) do
+ActiveRecord::Schema.define(:version => 20120108184833) do
 
   create_table "application_categories", :force => true do |t|
     t.integer  "application_id"
@@ -104,6 +104,14 @@ ActiveRecord::Schema.define(:version => 20120104013525) do
     t.integer  "application_id"
     t.integer  "ranking_id"
     t.integer  "rank"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.integer  "application_id"
+    t.integer  "stat"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

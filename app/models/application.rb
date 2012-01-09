@@ -9,6 +9,7 @@ class Application < ActiveRecord::Base
   has_many :review_summaries
   has_many :ranks
   has_many :rankings, :through => :ranks
+  has_many :reports
   belongs_to :category
 
   validates :package, :presence => true
@@ -103,6 +104,16 @@ class Application < ActiveRecord::Base
   
   def add_download value
     Download.create(:value => value, :application => self)
+  end
+  
+  def add_report stat, value
+    return if stat.nil? || value.nil?
+    r = Report.where("application_id=#{self.id} and stat=#{stat} and date(created_at)=date(now())").first
+    if r.nil?
+      Report.create(:stat => stat, :value => value, :application => self)
+    else
+      r.update_attribute :value, value
+    end
   end
   
   def add_review_summary votes
