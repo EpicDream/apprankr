@@ -1,11 +1,20 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+france_shopping_free:
+  country: france
+  category: shopping
+  ranking_type: topfree
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+france_application_free:
+  country: france
+  category: application
+  ranking_type: free
+
+usa_shopping_free:
+  country: usa
+  category: shopping
+  ranking_type: topfree
+
+usa_application_free:
+  country: usa
+  category: application
+  ranking_type: free
+

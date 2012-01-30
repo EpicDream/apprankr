@@ -2,4 +2,10 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  apps_topselling_free: "Top Free"
+  apps_topselling_paid: "Top Paid"
+  apps_movers_shakers: "Trending Apps"
+  apps_featured: "Featured Apps"
+  apps_topgrossing: "Top Grossing"
+  apps_topselling_new_paid: "Top New Paid"
+  apps_topselling_new_free: "Top New Free"

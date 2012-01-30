@@ -40,7 +40,14 @@ module Scraper
         end
         application.update_attribute :screenshots, screenshots.join(",")      
         version = HTMLEntities.new.decode(doc.xpath("//dd[@itemprop='softwareVersion']").children.to_s)   
-        size = HTMLEntities.new.decode(doc.xpath("//dd[@itemprop='fileSize']").children.to_s)   
+        size = HTMLEntities.new.decode(doc.xpath("//dd[@itemprop='fileSize']").children.to_s) 
+        price = HTMLEntities.new.decode(doc.xpath("//meta[@itemprop='price']").attribute('content').to_s)
+        price_micro = price.gsub(/[^\d]/, "").to_i
+        price = "free" if price_micro == 0
+        if application.price.blank? || !application.price.value.eql?(price)
+          log "  PRICE: #{price} (#{price_micro})"
+          application.add_price price_micro, price, Country.france.pop
+        end
         if application.version.blank? || !application.version.value.eql?(version)
           log "  VERSION: #{version}"
           application.add_version version, size
@@ -148,7 +155,8 @@ Scraper.scrape_review review, a ,l
         :title => title,
         :content => content,
         :rating => rating,
-        :created_at => Date.parse(date) )
+        :created_at => "#{Date.parse(date)} 15:00:00",
+        :updated_at => "#{Date.parse(date)} 15:00:00" )
       if r.save
         return false
       else
@@ -228,8 +236,9 @@ Scraper.scrape_review review, a ,l
       Language.find_or_create_by_code_and_name(code, name)
     end
     @config['countries'].each do |country|
-      name, code = country.split(/\:/)
-      Country.find_or_create_by_name_and_language_id(name, Language.find_by_code(code).id)
+      name, lg_code, code = country.split(/\:/)
+      c = Country.find_or_create_by_name_and_language_id(name, Language.find_by_code(lg_code).id)
+      c.update_attribute :code, code
     end
     @config['categories'].each do |category_name|
       Category.find_or_create_by_name category_name

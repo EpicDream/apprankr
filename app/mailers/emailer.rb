@@ -1,9 +1,11 @@
 class Emailer < ActionMailer::Base
 
-  # Emailer.daily_summary([Application.find(903)], 'elarch@gmail.com')
-  def daily_summary applications, recipient
+  default :from => "apprankr@prixing.fr"
+
+  def daily_summary applications, recipient, reporting=false
+    @reporting = reporting
     @applications = applications
-    mail(:to => recipient, :subject => "Daily report from Apprankr", :from => "Apprankr <apprankr@prixing.fr>")
+    mail(:to => recipient, :subject => "[Apprankr] Daily report for #{Date.yesterday.to_s(:long)}", :from => "apprankr@prixing.fr")
   end
 
 end

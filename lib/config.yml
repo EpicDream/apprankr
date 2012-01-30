@@ -70,15 +70,15 @@ languages:
   - ja:日本語
 
 countries:
-  - France:fr
-  - USA:en
-  - Brazil:pt_BR
-  - United Kingdom:en
-  - Sweden:sv
-  - Denmark:da
-  - Austria:de
-  - Netherlands:nl
-  - Germany:de
+  - France:fr:fr
+  - USA:en:us
+  - Brazil:pt_BR:br
+  - United Kingdom:en:uk
+  - Sweden:sv:sv
+  - Denmark:da:dk
+  - Austria:de:at
+  - Netherlands:nl:nl
+  - Germany:de:de
 
 c2:
   - Canada

@@ -7,7 +7,7 @@ module Console
     stats = extract_stats
     extract_packages.each_with_index do |package, i|
       if package.eql?("fr.epicdream.likestorm")
-        puts "ERROR: skipping #{package}"
+        #puts "ERROR: skipping #{package}"
         next
       end
       application = Application.find_by_package(package)
@@ -65,7 +65,7 @@ module Console
   def self.extract_stats
     stats = []
     @driver.find_elements(:xpath, '//div[@class="listingRow"]/div/div/span').each do |e|
-      if m = e.text.match(/^([0-9,\.]+)$/)
+      if m = e.text.match(/^([0-9,\. ]+).*$/)
         stats << m[1].gsub(/[^\d]/, "")
       end
     end

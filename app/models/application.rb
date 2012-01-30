@@ -14,6 +14,10 @@ class Application < ActiveRecord::Base
 
   validates :package, :presence => true
 
+  def ranking_types
+    RankingType.where(:id => self.rankings.where("ranks.created_at::date+1>=now()::date").map(&:ranking_type_id).uniq)
+  end
+
   def ranking_countries
     Country.where(:id => self.rankings.uniq.map(&:country_id)).order(:name)
   end
@@ -31,11 +35,11 @@ class Application < ActiveRecord::Base
   end
   
   def current_rank ranking
-    self.ranks.where(:ranking_id => ranking).order("created_at desc").first
+    self.ranks.where("ranking_id=? and created_at::date+1>=now()::date", ranking.id).order("created_at desc").first
   end
 
   def previous_rank ranking
-    self.ranks.where(:ranking_id => ranking).order("created_at desc").second
+    self.ranks.where("ranking_id=? and created_at::date+2>=now()::date", ranking.id).order("created_at desc").second
   end
 
   def current association, language
@@ -44,6 +48,16 @@ class Application < ActiveRecord::Base
       || send(association).order("created_at desc").first
   end
 
+  def day_report stat, delay=0
+    today = self.reports.where("stat=#{stat} and created_at::date=now()::date-interval '#{delay} days'").pop.try(:value)
+    yesterday = self.reports.where("stat=#{stat} and created_at::date=now()::date-interval '#{delay+1} days'").pop.try(:value)
+    today.nil? ? nil : today - (yesterday.nil? ? 0 : yesterday)
+  end
+
+  def report stat, delay=0
+    self.reports.where("stat=#{stat} and created_at::date=now()::date-interval '#{delay} days'").pop.try(:value) || "N/A"
+  end
+    
   def title language=nil
     current :titles, language
   end
@@ -69,8 +83,16 @@ class Application < ActiveRecord::Base
     self.versions.order("created_at desc").first
   end
   
+  def previous_version
+    self.versions.order("created_at desc").second
+  end
+  
   def download
     self.downloads.order("created_at desc").first
+  end
+
+  def previous_download
+    self.downloads.order("created_at desc").second
   end
   
   def review_summary
@@ -78,7 +100,7 @@ class Application < ActiveRecord::Base
   end
   
   def last_reviews
-    self.reviews.where("created_at::date + 2 >= now()::date").order(:created_at)
+    self.reviews.where("updated_at::date=now()::date-1").order(:updated_at)
   end
     
   def add_title content, language
@@ -126,5 +148,18 @@ class Application < ActiveRecord::Base
       return true
     end
   end
-    
+  
+  def last_changes
+    v = self.versions.where("created_at::date=now()::date-1")
+    t = self.titles.where("created_at::date=now()::date-1")
+    s = self.descriptions.where("created_at::date=now()::date-1")
+    w = self.whatsnews.where("created_at::date=now()::date-1")
+    d = self.downloads.where("created_at::date=now()::date-1")
+    { :version => v.size > 1 ? v.first : nil,
+      :title => t.size > 1 ? t.first : nil,
+      :description => s.size > 1 ? s.first : nil,
+      :whatsnew => w.size > 1 ? w.first : nil,
+      :download => d.size > 1 ? d.first : nil, }
+  end
+  
 end

@@ -1,11 +1,11 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+prixing:
+  package: fr.epicdream.beamy
+  developer: Eric Larchevêque
+  email: elarch@gmail.com
+  website: http://www.google.com/url?q=http://www.prixing.fr&usg=AFQjCNGDHhjb7DUM49vzxx4SRzeqjP9Lpw
+  icon: https://lh4.ggpht.com/vHv7LpYHQVPOUTLoGDEiU2ngOJ2BnrB45JbzVfYpoRLXvOpFjLrU0xlwARV22EKsOzU=w124
+  video: https://www.youtube.com/v/1neL6_f5Xvc?fs=1&rel=0&version=3
+  screenshots: https://lh3.ggpht.com/Tfu0zv4lKCGjcH6_cdIUywClT7u1TcMJ2uSqPe3KfikYC40zagGPitVhpwicbV3rlLP3=h230,https://lh6.ggpht.com/gx_NvypGkeUSD_VC_TFpD9m6kxQihyJvmxkg7CtojS2fLfjJetEUGDJvnieSzE7QbA=h230,https://lh6.ggpht.com/b14QwpQp0kBJ_Xm4D4LziRmR6CH3weZxIRXWSxvjkzmaxM5-sGaOEKyjiyFsXPaE-Gjg=h230,https://lh5.ggpht.com/hb6mZHOeFnI_gvJ74w6Oure3pbzG4Tt1XgoOYnOd64L7_AKKa0-nmHvqBVm3j86GLw=h230,https://lh3.ggpht.com/t8NTKkEp2jYTAZOt2Cu8Nd6TOVt_B6jzmMckCRNX2zQsJ7l7waNkvBMVJTY0h4V7sw=h230,https://lh3.ggpht.com/a-AGiO7iiLD2aXVSG0NM2vnXgHjSaMToaDETRCW7GLX6MAwfVv_I_d-FPUyD8eg7nTQ=h230,https://lh6.ggpht.com/OxPDGPar1P5TQbQvGPYdrcVG8nLTK6S4PlZtmkFwlPolIz65vZP0frs8E4vUWm2vwbo=h230,https://lh4.ggpht.com/pGnqIQhMfkUV9vh0_zCeTTLWtyxT75VLg_7tWUim0mNObP0VM1QYmIVIP_sfNi8Djlg=h230
+  category: shopping
+  monitor: true
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value

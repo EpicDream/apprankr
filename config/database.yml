@@ -9,7 +9,7 @@ development:
   password: ja_kn_81P
 
 test:
-  database: apprankr-test
+  database: db/apprankr-test.db
   adapter: sqlite3 
 
 production:

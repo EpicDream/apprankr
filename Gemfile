@@ -7,3 +7,4 @@ gem 'pg'
 gem 'nokogiri'
 gem 'htmlentities'
 gem 'selenium-webdriver'
+

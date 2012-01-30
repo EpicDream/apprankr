@@ -1,147 +1,300 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head><title></title></head>
-<body style="background-color: #edeeef;" align="center" style="font-family: tahoma, arial, verdana, sans-serif;">
-<div align="center">
-<div align="center" style="padding-bottom: 15px; width: 695px;">
-  <div stlye="height: 10px; width: 665px; line-height: 1px; font-size: 1px;">&nbsp;</div>
-  <img src="http://appannie.com/media/pictures/annie_email/annie_daily_top_corners.png" style="width: 665px; height: 6px; display: block;" />
-  <div align="left" style="width: 665px; background-color: #ffffff;">
-    <div style="padding: 15px; padding-top: 10px; padding-bottom: 0px;">
-      <div style="padding-bottom: 12px;">
-        <table cellspacing="0" cellpadding="0" width="635" height="44">
-           <tr>
-            <td width="344" valign="bottom"><a href="http://www.apprankr.com"><img src="http://appannie.com/media/pictures/annie_email/annie_daily_header.jpg" style="width: 344px; height: 40px;" width="344" height="40" alt="Apprankr's Daily Report" border="0" /></a></td>
-            <td valign="bottom" style="text-align: right; padding-bottom: 7px; -webkit-text-size-adjust: none; font-size: 15px; color: #333; font-weight: normal;"><%= Date.today.to_s(:long) %></td>
-          </tr>
-        </table>
-      </div>
-      
-      <% @applications.each do |application| %>
-        <table cellspacing="0" cellpadding="0" style="width: 635px;">
-          <tr>
-            <th background="http://appannie.com/media/pictures/annie_email/annie_daily_app_table_header_bg.png" style="text-align: left; font-weight: normal; padding-top: 6px; padding-bottom: 6px; border-top: 1px solid #f1f1f1; border-bottom: 1px solid #ececec;" valign="center">
-              <table cellspacing="0" cellpadding="0" style="width: 340px;">
-                <tr>
-                  <td width="33" style="width: 33px; text-align: right;" valign="center">
-                    <img width="24px" height="24px" src="<%= application.icon %>" style="border: 0px;" />
-                  </td>
-                  <td style="font-weight: normal; -webkit-text-size-adjust: none; font-size: 14px; padding-left: 8px; padding-top: 2px;">
-                    <a name="app_1" title="<%= application.title %>" href="#" style="color: #333333; text-decoration: none;"><%= application.title.content %></a>
-                  </td>
-                </tr>
-              </table>
-            </th>
-            <th background="http://appannie.com/media/pictures/annie_email/annie_daily_app_table_header_bg.png" align="right" style="text-align: right; font-weight: normal; padding-top: 6px; padding-bottom: 6px; border-top: 1px solid #f1f1f1; border-bottom: 1px solid #ececec;">
-              <table cellspacing="0" cellpadding="0" width="235" style="width: 235px;" align="right">
-                <tr>
-                  <td width="115" style="-webkit-text-size-adjust: none; font-size: 10px; color: #848383; text-align: right; padding-bottom: 3px; width: 115px; margin-right: 0px;">VERSION</td>
-                  <td width="115" style="-webkit-text-size-adjust: none; font-size: 10px; color: #848383; text-align: right; padding-bottom: 3px; width: 115px; margin-right: 0px;">DOWNLOADS</td>
-                  <td width="120" style="-webkit-text-size-adjust: none; font-size: 10px; color: #848383; text-align: right; padding-bottom: 3px; padding-right: 10px; width: 120px; margin-right: 0px;">REVIEWS</td>
-                </tr>
-                <tr>
-                  <td style="-webkit-text-size-adjust: none; font-size: 12px; text-align: right; font-weight: bold;"><%= application.version.value %></td>
-                  <td style="-webkit-text-size-adjust: none; font-size: 12px; text-align: right; font-weight: bold;"><%= application.download.value %></td>
-                  <td style="-webkit-text-size-adjust: none; font-size: 12px; text-align: right; padding-right: 10px; font-weight: bold;"><%= sprintf("%1.2f",application.review_summary.rating) %> (<%= application.review_summary.count %>)</a></td>
-                </tr>
-              </table>
-            </th>
-          </tr>
-          <tr>
-            <td colspan="2" align="center" style="background-color: #f8f8f8; border-bottom: 1px solid #f1f1f1; padding-bottom: 10px;">
-
-              <% application.ranking_countries.each do |country| %>
-
-                <div style="height: 10px; line-height: 1px; font-size: 1px;">&nbsp;</div>
-                <table cellspacing="0" cellpadding="0" style="width: 615px;" width="615">
-                  <tr>
-                    <th style="padding: 5px; padding-left: 0px; color: #666666; -webkit-text-size-adjust: none; font-size: 10px; text-transform: uppercase; font-weight: normal; text-align: left; border-bottom: 1px solid #eeeeee;">
-                      <a title="<%= country.name %>" style="text-decoration: none;"><img alt="<%= country.name %>" src="http://www.appannie.com/media/pictures/flags/gif/<%= country.language.code %>.gif" style="width: 16px; height: 11px; border: 0px; margin-right: 1px;"></a> 
-                      <a href="#" style="color: #333333; text-decoration: none;">Rankings</a>
-                    </th>
-                    <% application.ranking_categories_for_country(country).each do |category| %>
-                      <th style="text-align: left; padding: 5px; color: #666666; -webkit-text-size-adjust: none; font-size: 10px; text-transform: uppercase; font-weight: normal; text-align: center; border-bottom: 1px solid #eeeeee;" colspan="2">
-                        <%= category.name %>
-                      </th>
-                    <% end %>
-                  </tr>
-                  <% application.ranking_types_for_country(country).each do |ranking_type| %>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Apprank Daily Report</title>
+  </head>
+  <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color:#FAFAFA;">
+    <center>
+      <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" style="background-color:#FAFAFA;">
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="620" style="border: 1px solid #DDDDDD; background-color:#FFFFFF;">
+              <tr>
+                <td align="center" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color:#FFFFFF; border-bottom:0;">
                     <tr>
-                      <td style="-webkit-text-size-adjust: none; font-size: 13px; text-align: left; color: #333333; background-color: #ffffff; border-left: 1px solid #eeeeee; padding: 5px;  border-bottom: 1px solid #eee;">
-                        <%= ranking_type.name %>
+                      <td style="color:#202020; font-family:Arial; font-size:34px; font-weight:bold; line-height:100%; padding:20px; text-align:center; vertical-align:middle;">
+                        <a href="http://www.apprankr.com"><img src="http://dl.dropbox.com/u/16817701/apprankr/apprankr.png" style="width: 300px; height: 53px;" alt="Apprankr's Daily Report" border="0" /></a>
+                        <span style="font-size:15px; font-weight:normal; padding:20px 0px; float: right;"><%= Date.yesterday.to_s(:long) %></span>
                       </td>
-                      <% application.ranking_categories_for_country(country).each do |category| %>
-                        <% ranking = Ranking.find_by_country_id_and_category_id_and_ranking_type_id(country.id, category.id, ranking_type.id) %>
-                        <% current_rank = application.current_rank(ranking).rank %>
-                        <% previous_rank = application.previous_rank(ranking).try(:rank) %>
-                        <td valign="center" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; background-color: #ffffff; padding: 5px; padding-left: 20px; text-align: right;  border-bottom: 1px solid #eee;">
-                          <%= current_rank %>
-                        </td>
-                        <td valign="bottom" style="-webkit-text-size-adjust: none; font-size: 13px; background-color: #ffffff;  padding: 5px; padding-right: 15px; text-align: left;  border-bottom: 1px solid #eee;">
-                          <% if previous_rank %>
-                            <a title="Compared to yesterday" style="color: <%= current_rank.to_i < previous_rank.to_i ? "#5db446" : "#ff0000" %>; text-decoration: none; -webkit-text-size-adjust: none; font-size: 11px;">
-                              <span style="-webkit-text-size-adjust: none; font-size: 9px; padding-right: 2px;">
-                                <%= current_rank.to_i < previous_rank.to_i ? "&#x25B2;" : "&#x25BC;" %>
-                              </span>
-                              <%= previous_rank %>
-                            </a>
-                          <% end %>
-                        </td>
-                      <% end %>                      
                     </tr>
-                  <% end %>
-                </table>
-              
-              <% end %>
-              
-              <% reviews = application.last_reviews %>
-              <% rating = reviews.map(&:rating).inject{ |sum, el| sum + el }.to_f / reviews.size %>
-              
-              <div style="height: 10px; line-height: 1px; font-size: 1px;">&nbsp;</div>
-              <table cellspacing="0" cellpadding="0" style="width: 615px;" width="615">
-                <tr>
-                  <th colspan="3" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; padding: 5px; font-size: 10px; text-transform: uppercase; font-weight: normal; text-align: left; border-bottom: 1px solid #eeeeee;">
-                    <a href="#" style="color: #333333; text-decoration: none;"><%= reviews.count %> New Reviews<span style="padding-left: 0px;">, Avg. <%= sprintf("%1.2f", rating) %> Rating</span></a>
-                  </th>
-                </tr>
-                <% reviews.each do |review| %>                    
-                  <tr>    
-                    <td width="23" valign="top" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; border-left: 1px solid #eeeeee; background-color: #ffffff; padding-left: 8px; padding-top: 8px; padding-right: 0px; text-align: left;  border-bottom: 0px;">
-                      <a title="review.language.name" style="text-decoration: none;">
-                        <img src="http://www.appannie.com/media/pictures/flags/gif/<%= review.language.code %>.gif" />
-                      </a>
-                    </td>
-                    <td width="90" valign="top" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; background-color: #ffffff; border-left: 0px; padding: 5px; padding-left: 0px; padding-right: 0px; text-align: left;  border-bottom: 0px;">
-                      <nobr>
-                        <% review.rating.times do %>
-                          <img src="http://static.appannie.com/media/pictures/star-whole.png" alt="*" />
-                        <% end %>
-                        <% (5 - review.rating).times do %>
-                          <img src="http://static.appannie.com/media/pictures/star-blank.png" alt="*" />
-                        <% end %>
-                      </nobr>
-                    </td>
-                    <td width="502" valign="top" style="-webkit-text-size-adjust: none; font-size: 13px; color: #333333; border-right: 1px solid #eeeeee; background-color: #ffffff; padding: 5px; padding-left: 0px; text-align: left;  border-bottom: 0px;">
-                      <strong><%= review.title %></strong> - <%= review.content %>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" width="600">
+                    <tr>
+                      <td valign="top">
+
+                        <% @applications.each do |application| %>
+
+                        <table border="0" cellpadding="0" cellspacing="0" width="600">
+                          <tr>
+                            <td valign="top" style="border-top:1px solid #ccc; border-right:1px solid #ccc; border-bottom:3px solid #ccc; border-left:1px solid #ccc; margin:5px 5px 30px 5px;">
+                              <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                <tr>
+                                  <td valign="top">                                   
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="color:#333; font-family:Arial; font-size:22px; line-height:125%; text-align:center !important; margin-bottom:10px; padding-bottom: 10px; border-bottom:1px solid #ccc;">
+                                      <tr>
+                                      <td width="100"><img src="<%= application.icon %>" style="margin:5px; width:64px;" /></td>
+                                      <td><%= application.title.content %></td>
+                                      </tr>
+                                    </table>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="color:#707070; font-family:Arial; font-size:10px; line-height:125%; text-align:right; margin-bottom:20px; padding-bottom: 10px; border-bottom:1px solid #ccc;">
+                                      <tr>
+                                        <td width="20%">PRICE</td>
+                                        <td width="20%">VERSION</td>
+                                        <td width="35%">DOWNLOADS</td>
+                                        <td width="25%">REVIEWS</td>
+                                      </tr>
+                                      <tr>
+                                        <td style="color:#333; font-family:Arial; font-size:14px; line-height:125%; text-align:right;">
+                                          <% if application.price.present? %>
+                                            <%= application.price.value.html_safe %>
+                                          <% end %>
+                                        </td>
+                                        <td style="color:#333; font-family:Arial; font-size:14px; line-height:125%; text-align:right;">
+                                          <% if application.version.present? %>
+                                            <b><%= application.version.value %></b>
+                                            (<%= application.version.size %>)
+                                          <% end %>
+                                        </td>
+                                        <td style="color:#333; font-family:Arial; font-size:14px; line-height:125%; text-align:right;">
+                                          <% if application.download.present? %>
+                                            <b><%= application.download.value %></b>
+                                          <% end %>
+                                        </td>
+                                        <td style="color:#333; font-family:Arial; font-size:14px; line-height:125%; text-align:right;">
+                                          <% if application.review_summary.present? %>
+                                            <b><%= sprintf("%1.2f",application.review_summary.rating) %></b>
+                                            (<%= application.review_summary.count %>)
+                                          <% end %>                                        
+                                        </td>
+                                      </tr>
+                                    </table>
+
+                                    <% downloaded = application.day_report Report::DOWNLOADED,1 %>
+                                    <% if downloaded.present? && @reporting %>
+                                      <% installed = application.day_report Report::INSTALLED,1 %>
+                                      <% downloaded7 = application.day_report Report::DOWNLOADED,8 %>
+                                      <% installed7 = application.day_report Report::INSTALLED,8 %>
+                                      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="color:#707070; font-family:Arial; font-size:10px; line-height:125%; text-align:left; text-shadow: 1px 1px white; margin-bottom:30px; padding-bottom: 15px; border-bottom:1px solid #ccc;">
+                                        <tr>
+                                          <td colspan="2"><h4 style="color:#202020; display:block; font-family:Arial; font-size:22px; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; margin-left:0; text-align:left;">Today</h4></td>
+                                          <td colspan="2"><h4 style="display:block; font-family:Arial; font-size:22px; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; text-align:left; margin-left:15px; color:#888888;">Last Week</h4></td>
+                                        </tr>
+                                        <tr>
+                                          <td width="25%" valign="top">
+                                            <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px;">
+                                              <span style="color:#707070; font-family:Arial; font-size:34px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color:#669900 !important;"><%= "+#{downloaded}" %></span><br />
+                                              <span style="color:#707070; font-family:Arial; font-size:10px; line-height:125%; text-align:left; margin-bottom:30px;"><%= "(#{application.report Report::DOWNLOADED})" %></span><br />
+                                              <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; text-align:left; margin-bottom:30px;">Downloads</span>
+                                            </div>
+                                          </td>
+                                          <td width="25%" valign="top">
+                                            <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:15px;">
+                                              <span style="color:#707070; font-family:Arial; font-size:34px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px;color: <%= installed > 0 ? "#669900" : "#FF0000" %>  !important;"><%= installed > 0 ? "+#{installed}" : "#{installed}" %></span><br />
+                                              <span style="color:#707070; font-family:Arial; font-size:10px; line-height:125%; text-align:left; margin-bottom:30px;"><%= "(#{application.report Report::INSTALLED})" %></span><br />
+                                              <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; text-align:left; margin-bottom:30px;">Active Installations</span>
+                                            </div>
+                                          </td>
+                                          <td width="25%" valign="top">
+                                            <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-left:10px;">
+                                              <span style="color:#707070; font-family:Arial; font-size:34px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #888888 !important;"><%= downloaded7.present? ? "+#{downloaded7}" : "N/A" %></span><br />
+                                              <span style="color:#707070; font-family:Arial; font-size:10px; line-height:125%; text-align:left; margin-bottom:30px;"><%= "(#{application.report Report::DOWNLOADED,7})" %></span><br />
+                                              <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; text-align:left; margin-bottom:30px;">Downloads</span>
+                                            </div>
+                                          </td>
+                                          <td width="25%" valign="top">
+                                             <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-left:15px;">
+                                              <span style="color:#707070; font-family:Arial; font-size:34px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px;color: #888888 !important;"><%= installed7.present? ? (installed7 > 0 ? "+#{installed7}" : "#{installed7}") : "N/A" %></span><br />
+                                              <span style="color:#707070; font-family:Arial; font-size:10px; line-height:125%; text-align:left; margin-bottom:30px;"><%= "(#{application.report Report::INSTALLED,7})" %></span><br />
+                                              <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; text-align:left; margin-bottom:30px;">Active Installations</span>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    <% end %>
+                                    
+                                    <% last_changes = application.last_changes %>
+                                    <% if last_changes.values.count(nil) < last_changes.size %>
+                                      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="color:#707070; font-family:Arial; font-size:10px; line-height:125%; text-align:left; text-shadow: 1px 1px white; margin-bottom:30px; padding-bottom: 15px; border-bottom:1px solid #ccc;">
+                                        <tr>
+                                          <td colspan="2"><h4 style="color:#202020; display:block; font-family:Arial; font-size:22px; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; margin-left:0; text-align:left;">Recent changes</h4></td>
+                                        </tr>
+                                          <% if version = last_changes[:version] %>
+                                            <% previous_version = application.previous_version %>
+                                            <tr>
+                                              <td width=50% valign="top">
+                                                <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px; margin-bottom: 10px;">
+                                                  <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; font-weight: bold; text-align:left; margin-bottom:30px;">New version</span><br />
+                                                  <span style="font-family:Arial; font-size:28px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #000 !important;"><%= version.value %></span>
+                                                  <span style="font-family:Arial; font-size:20px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #000 !important;">(<%= version.size %>)</span>
+                                                </div>
+                                              </td>
+                                              <td width=50% valign="top">
+                                                <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px; margin-bottom: 10px;">
+                                                  <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; font-weight: bold; text-align:left; margin-bottom:30px;">Previous version</span><br />
+                                                  <span style="font-family:Arial; font-size:28px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #000 !important;"><%= previous_version.value %></span>
+                                                  <span style="font-family:Arial; font-size:20px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #000 !important;">(<%= previous_version.size %>)</span><br />
+                                                  <span style="font-family:Arial; font-size:20px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #888 !important;"><%= pluralize ((version.created_at-previous_version.created_at)/86400).round, "day" %> ago</span>
+                                                </div>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                          <% if download = last_changes[:download] %>
+                                            <% previous_download = application.previous_download %>
+                                            <tr>
+                                              <td width=50% valign="top">
+                                                <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px; margin-bottom: 10px;">
+                                                  <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; font-weight: bold; text-align:left; margin-bottom:30px;">New downloads</span><br />
+                                                  <span style="font-family:Arial; font-size:28px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #000 !important;"><%= download.value %></span>
+                                                </div>
+                                              </td>
+                                              <td width=50% valign="top">
+                                                <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px; margin-bottom: 10px;">
+                                                  <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; font-weight: bold; text-align:left; margin-bottom:30px;">Previous downloads</span><br />
+                                                  <span style="font-family:Arial; font-size:28px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #000 !important;"><%= previous_download.value %></span><br />
+                                                  <span style="font-family:Arial; font-size:20px; font-weight: bold; line-height:125%; text-align:left; margin-bottom:30px; color: #888 !important;"><%= pluralize ((download.created_at-previous_download.created_at)/86400).round, "day" %> ago</span>
+                                                </div>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                          <% if title = last_changes[:title] %>
+                                            <tr>
+                                              <td colspan="2" valign="top">
+                                                <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px; margin-bottom: 10px;">
+                                                  <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; font-weight: bold; text-align:left; margin-bottom:30px;">Title</span><br />
+                                                  <span style="color:#707070; font-family:Arial; font-size:12px; line-height:100%; text-align:left; margin-bottom:30px; color: #000000 !important;"><%= title.content.gsub(/<[^>]+>/," ") %></span><br />
+                                                </div>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                          <% if whatsnew = last_changes[:whatsnew] %>
+                                            <tr>
+                                              <td colspan="2" valign="top">
+                                                <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px; margin-bottom: 10px;">
+                                                  <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; font-weight: bold; text-align:left; margin-bottom:30px;">What's new?</span><br />
+                                                  <span style="color:#707070; font-family:Arial; font-size:12px; line-height:100%; text-align:left; margin-bottom:30px; color: #000000 !important;"><%= whatsnew.content.gsub(/<[^>]+>/," ") %></span><br />
+                                                </div>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                          <% if description = last_changes[:description] %>
+                                            <tr>
+                                              <td colspan="2" valign="top">
+                                                <div style="border-top: 1px solid #D5D5D5; border-bottom: 3px solid #D5D5D5; border-right: 3px solid #D5D5D5; border-left: 1px solid #D5D5D5; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; background: #fefefe; padding:5px; text-align:left; margin-right:10px; margin-bottom: 10px;">
+                                                  <span style="color:#333; font-family:Arial; font-size:12px; line-height:125%; font-weight: bold; text-align:left; margin-bottom:30px;">Description</span><br />
+                                                  <span style="color:#707070; font-family:Arial; font-size:12px; line-height:100%; text-align:left; margin-bottom:30px; color: #000000 !important;"><%= description.content.gsub(/<[^>]+>/," ") %></span><br />
+                                                </div>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                      </table>                                    
+                                    <% end %>
+                                    
+                                    <% application.ranking_types.each do |ranking_type| %>
+                                      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="color:#333; font-family:Arial; font-size:12px; line-height:125%; text-align:center; margin-bottom:30px; padding-bottom: 15px;">
+                                        <tr>
+                                          <td colspan="3">
+                                            <h4 style="color:#202020; display:block; font-family:Arial; font-size:22px; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; margin-left:0; text-align:left;">
+                                              <%= I18n.t ranking_type.name %>
+                                            </h4>
+                                          </td>
+                                        </tr>
+                                        <% categories = Category.where(:id => application.rankings.where("ranks.created_at::date+1>=now()::date and ranking_type_id=?", ranking_type.id).map(&:category_id).uniq) %>
+                                        <% countries = Country.where(:id => application.rankings.where("ranks.created_at::date+1>=now()::date and ranking_type_id=?", ranking_type.id).map(&:country_id).uniq) %>
+                                        <tr>
+                                        <td width="33%" style="border-bottom:1px solid #cecece; background-color: #F3F3f3; padding: 5px 5px;"></td>
+                                        <% categories.each do |category| %>
+                                          <td width="33%" style="border-bottom:1px solid #cecece; background-color: #F3F3f3; padding: 5px 5px;"><%= category.true_name %></td>
+                                        <% end %>
+                                        </tr>
+                                        <% countries.each do |country| %>
+                                          <tr>
+                                            <td style="text-align: left; border-right:1px solid #F3F3f3; border-bottom:1px solid #F3F3f3; padding: 5px 5px;">
+                                              <a title="<%= country.name %>" style="text-decoration: none;"><img alt="<%= country.name %>" src="http://dl.dropbox.com/u/16817701/apprankr/flags/<%= country.code %>.gif" style="width: 16px; height: 11px; border: 0px; margin-right: 1px;"></a>  
+                                              <%= country.name %>
+                                            </td>
+                                            <% categories.each do |category| %>
+                                              <% ranking = Ranking.find_by_country_id_and_category_id_and_ranking_type_id(country.id, category.id, ranking_type.id) %>
+                                              <% current_rank = application.current_rank(ranking).try(:rank) %>
+                                              <% previous_rank = application.previous_rank(ranking).try(:rank) %>
+                                              <td style="border-left:1px solid #F3F3f3; border-bottom:1px solid #F3F3f3; padding: 5px 5px 0px 55px; text-align:left">
+                                                <% if current_rank.present? %>
+                                                  <%= current_rank %>
+                                                  <% if previous_rank.present? %>
+                                                    <a title="Compared to yesterday" style="color: <%= current_rank.to_i == previous_rank.to_i ? "#0000ff" : (current_rank.to_i < previous_rank.to_i ? "#5db446" : "#ff0000") %>; text-decoration: none; -webkit-text-size-adjust: none; font-size: 11px;">
+                                                      <span style="padding-left: 5px;"><%= current_rank.to_i == previous_rank.to_i ? "=" : (current_rank.to_i < previous_rank.to_i ? "+" : "-") %></span><%= (previous_rank - current_rank).abs %>
+                                                    </a>
+                                                  <% else %>
+                                                    <span style="padding-left: 5px; color: #5db446; font-size: 9px;">NEW</span>
+                                                  <% end %>
+                                                <% end %>
+                                              </td>
+                                            <% end %>
+                                          </tr>
+                                        <% end %>                                      
+                                      </table>
+                                    <% end %>
+                                  
+                                    <% reviews = application.last_reviews %>  
+                                    <% if reviews.size > 0 %>
+                                      <% rating = reviews.map(&:rating).inject{ |sum, el| sum + el }.to_f / reviews.size %>
+                                      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="color:#333; font-family:Arial; font-size:12px; line-height:125%; text-align:left; margin-bottom:30px; padding-bottom: 15px;">
+                                        <tr>
+                                          <td colspan="3">
+                                            <h4 style="color:#202020; display:block; font-family:Arial; font-size:22px; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; margin-left:0; text-align:left; float:left">
+                                              <%= pluralize reviews.count, "new review" %>
+                                            </h4>
+                                            <span style="float:right;">Average <b><%= sprintf("%1.2f", rating) %> Rating</b></span>
+                                          </td>
+                                        </tr>
+                                        <% reviews.each do |review| %>
+                                          <tr valign="top">
+                                            <td width="25" style="border-bottom:1px solid #F3F3f3; padding: 10px 0px;">
+                                              <img src="http://dl.dropbox.com/u/16817701/apprankr/flags/<%= review.language.code %>.gif" />
+                                            </td>
+                                            <td width="80" style="border-bottom:1px solid #F3F3f3; padding: 10px 0px;">
+                                              <% review.rating.times do %>
+                                                <img src="http://dl.dropbox.com/u/16817701/apprankr/star-on.png" alt="*" />
+                                              <% end %>
+                                              <% (5 - review.rating).times do %>
+                                                <img src="http://dl.dropbox.com/u/16817701/apprankr/star-off.png" alt="*" />
+                                              <% end %>
+                                            </td>
+                                            <td style="border-bottom:1px solid #F3F3f3; padding: 10px 0px;">
+                                              <strong><%= review.title %></strong> - <%= review.content %>
+                                            </td>
+                                          </tr>
+                                        <% end %>
+                                      </table>
+                                    <% end %>
+
+                                  </td>
+                                </tr>
+                              </table>
+
+                            </td>
+                          </tr>
+                        </table>
+
+                        <p> </p>
+                            
+                      <% end %>
+                        
                     </td>
                   </tr>
-                <% end %>
-              </table>
-                           
-            </td>
-          </tr>
-        </table>
 
-        <% end %>
+                </td>
+              </tr>
+            </table>
+          </td>
+         </tr>
 
-        <div style="height: 20px; line-height: 1px; font-size: 1px;">&nbsp;</div>
-
-    </div>
-  </div>
-
-  <img src="http://appannie.com/media/pictures/annie_email/annie_daily_bottom_corners.png" style="width: 665px; height: 6px; display: block;" />
-
-</div>
-</div>
-</body>
+      </table>
+    </center>
+  </body>
 </html>
